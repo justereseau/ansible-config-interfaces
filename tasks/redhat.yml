@@ -86,55 +86,31 @@
     item['configure']
 
 - name: redhat | Restarting Network Bonds
-<<<<<<< HEAD
   shell: screen -dm bash -c "sleep {{ delay_before_restart }} && ifdown {{ item['item']['name'] }} && ifup {{ item['item']['name'] }}"
-=======
-  shell: bash -c "ifdown {{ item['item']['name'] }} && ifup {{ item['item']['name'] }}"
->>>>>>> ddafad6fa201913382a7f656b1cfcb25996743a4
   become: true
   with_items: "{{ config_bond['results'] }}"
   when: >
     config_network_bonds and
-<<<<<<< HEAD
     (enable_configured_interfaces_after_defining or item['item']['enable']) and
-=======
-    enable_configured_interfaces_after_defining and
->>>>>>> ddafad6fa201913382a7f656b1cfcb25996743a4
     item['item']['configure'] and
     item['changed']
 
 - name: redhat | Restarting Network Bridges
-<<<<<<< HEAD
   shell: screen -dm bash -c "sleep {{ delay_before_restart }} && ifdown {{ item['item']['name'] }} && ifup {{ item['item']['name'] }}"
-=======
-  shell: bash -c "ifdown {{ item['item']['name'] }} && ifup {{ item['item']['name'] }}"
->>>>>>> ddafad6fa201913382a7f656b1cfcb25996743a4
   become: true
   with_items: "{{ config_bridge['results'] }}"
   when: >
     config_network_bridges and
-<<<<<<< HEAD
     (enable_configured_interfaces_after_defining or item['item']['enable']) and
-=======
-    enable_configured_interfaces_after_defining and
->>>>>>> ddafad6fa201913382a7f656b1cfcb25996743a4
     item['item']['configure'] and
     item['changed']
 
 - name: redhat | Restarting Network Interfaces
-<<<<<<< HEAD
   shell: screen -dm bash -c "sleep {{ delay_before_restart }} && ifdown {{ item['item']['name'] }} && ifup {{ item['item']['name'] }}"
-=======
-  shell: bash -c "ifdown {{ item['item']['name'] }} && ifup {{ item['item']['name'] }}"
->>>>>>> ddafad6fa201913382a7f656b1cfcb25996743a4
   become: true
   with_items: "{{ config_interface['results'] }}"
   when: >
     config_network_interfaces and
-<<<<<<< HEAD
     (enable_configured_interfaces_after_defining or item['item']['enable']) and
-=======
-    enable_configured_interfaces_after_defining and
->>>>>>> ddafad6fa201913382a7f656b1cfcb25996743a4
     item['item']['configure'] and
     item['changed']
