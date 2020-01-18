@@ -10,7 +10,7 @@
 
 - name: redhat | Installing Pre-Reqs
   yum:
-    name: ["lldpd"]
+    name: ["lldpd", "screen"]
     state: present
   become: true
   register: result

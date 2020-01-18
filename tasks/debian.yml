@@ -1,7 +1,7 @@
 ---
 - name: debian | Installing Pre-Req Packages
   apt:
-    name: ["lldpd"]
+    name: ["lldpd", "screen"]
     state: present
   become: true
   register: result
@@ -48,11 +48,7 @@
     config_network_interfaces)
 
 - name: debian | Restarting Network Interfaces
-<<<<<<< HEAD
   shell: screen -dm bash -c "sleep {{ delay_before_restart }} && ifdown {{ item.name }} --force && ifup {{ item.name }} --force"
-=======
-  shell: bash -c "ifdown {{ item.name }} --force && ifup {{ item.name }} --force"
->>>>>>> ddafad6fa201913382a7f656b1cfcb25996743a4
   become: true
   with_items: "{{ network_interfaces }}"
   when: >
@@ -61,11 +57,7 @@
     config_interface['changed']
 
 - name: debian | Restarting Network VLANs
-<<<<<<< HEAD
   shell: screen -dm bash -c "sleep {{ delay_before_restart }} && ifdown {{ item.name }} --force && ifup {{ item.name }} --force"
-=======
-  shell: bash -c "ifdown {{ item.name }} --force && ifup {{ item.name }} --force"
->>>>>>> ddafad6fa201913382a7f656b1cfcb25996743a4
   become: true
   with_items: "{{ network_vlans }}"
   when: >
@@ -75,11 +67,7 @@
     config_interface['changed']
 
 - name: debian | Restarting Network Bridges
-<<<<<<< HEAD
   shell: screen -dm bash -c "sleep {{ delay_before_restart }} && ifdown {{ item.name }} --force && ifup {{ item.name }} --force"
-=======
-  shell: bash -c "ifdown {{ item.name }} --force && ifup {{ item.name }} --force"
->>>>>>> ddafad6fa201913382a7f656b1cfcb25996743a4
   become: true
   with_items: "{{ network_bridges }}"
   when: >
@@ -89,11 +77,7 @@
     config_interface['changed']
 
 - name: debian | Restarting OVS Bridges
-<<<<<<< HEAD
   shell: screen -dm bash -c "sleep {{ delay_before_restart }} && ifdown {{ item.name }} --force && ifup {{ item.name }} --force"
-=======
-  shell: bash -c "ifdown {{ item.name }} --force && ifup {{ item.name }} --force"
->>>>>>> ddafad6fa201913382a7f656b1cfcb25996743a4
   become: true
   with_items: "{{ ovs_bridges }}"
   when: >
@@ -103,11 +87,7 @@
     config_interface['changed']
 
 - name: debian | Restarting OVS Bonds
-<<<<<<< HEAD
   shell: screen -dm bash -c "sleep {{ delay_before_restart }} && ifdown {{ item.name }} --force && ifup {{ item.name }} --force"
-=======
-  shell: bash -c "ifdown {{ item.name }} --force && ifup {{ item.name }} --force"
->>>>>>> ddafad6fa201913382a7f656b1cfcb25996743a4
   become: true
   with_items: "{{ ovs_bonds }}"
   when: >
@@ -117,11 +97,7 @@
     config_interface['changed']
 
 - name: debian | Restarting OVS Interfaces
-<<<<<<< HEAD
   shell: screen -dm bash -c "sleep {{ delay_before_restart }} && ifdown {{ item.name }} --force && ifup {{ item.name }} --force"
-=======
-  shell: bash -c "ifdown {{ item.name }} --force && ifup {{ item.name }} --force"
->>>>>>> ddafad6fa201913382a7f656b1cfcb25996743a4
   become: true
   with_items: "{{ ovs_interfaces }}"
   when: >
