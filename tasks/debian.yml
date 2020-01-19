@@ -48,7 +48,7 @@
     config_network_interfaces)
 
 - name: debian | Restarting Network Interfaces
-  shell: screen -dm bash -c "sleep {{ delay_before_restart }} && ifdown {{ item.name }} --force && ifup {{ item.name }} --force"
+  shell: screen -dm bash -c "sleep {{ delay_before_restart }} && ifdown {{ item.name }} --force && ifup {{ item.name }} --force && sed -i '/{{ ansible_host }}/{/127.0.0.1/!d;}' /etc/hosts &&  echo '{{ item.address }}  $(hostname -f) $(hostname -s)' >> /etc/hosts && sleep 2  && service sssd restart"
   become: true
   with_items: "{{ network_interfaces }}"
   when: >
@@ -105,3 +105,4 @@
     (enable_configured_interfaces_after_defining or item['enable']) and
     item['configure'] and
     config_interface['changed']
+    

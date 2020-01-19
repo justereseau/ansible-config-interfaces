@@ -106,7 +106,7 @@
     item['changed']
 
 - name: redhat | Restarting Network Interfaces
-  shell: screen -dm bash -c "sleep {{ delay_before_restart }} && ifdown {{ item['item']['name'] }} && ifup {{ item['item']['name'] }}"
+  shell: screen -dm bash -c "sleep {{ delay_before_restart }} && ifdown {{ item['item']['name'] }} && sed -i '/{{ ansible_host }}/{/127.0.0.1/!d;}' /etc/hosts &&  echo '{{ item.address }}  $(hostname -f) $(hostname -s)' >> /etc/hosts && sleep 2  && service sssd restart"
   become: true
   with_items: "{{ config_interface['results'] }}"
   when: >
